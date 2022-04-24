@@ -21,8 +21,16 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
-  // Route.get('/users', 'UsersController.index')
-  // Route.get('/posts', 'PostsController.index')
-}).prefix('/api')
+  Route.group(() => {
+    // TODO: remove route
+    Route.get('/test', () => {
+      console.log('test')
+    })
+  }).middleware('auth')
+
+  Route.post('/login', 'Users/AuthController.login').as('login')
+  Route.post('/register', 'Users/AuthController.register').as('register')
+  Route.post('/logout', 'Users/AuthController.logout').as('logout')
+}).prefix('/api/v1')
 
 Route.on('*').render('index')
