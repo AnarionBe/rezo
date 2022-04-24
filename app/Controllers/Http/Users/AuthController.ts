@@ -8,7 +8,7 @@ export default class AuthController {
       const validator = await schema.create({
         email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
         password: schema.string({}, [rules.confirmed()]),
-        // username: schema.string({}, [rules.unique({ table: 'users', column: 'username' })])
+        username: schema.string({}, [rules.unique({ table: 'users', column: 'username' })])
       })
 
       const data = await request.validate({ schema: validator })
@@ -16,7 +16,11 @@ export default class AuthController {
 
       return response.created(user)
     } catch(e) {
-      return response.status(422).send(e.messages)
+      if(e.messages) {
+        return response.status(422).send(e.messages)
+      }
+
+      return response.status(500)
     }
   }
 

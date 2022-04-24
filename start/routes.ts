@@ -20,14 +20,9 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.group(() => {
-  Route.group(() => {
-    // TODO: remove route
-    Route.get('/test', () => {
-      console.log('test')
-    })
-  }).middleware('auth')
+import './routes/users'
 
+Route.group(() => {
   Route.post('/login', 'Users/AuthController.login').as('login')
   Route.post('/register', 'Users/AuthController.register').as('register')
   Route.post('/logout', 'Users/AuthController.logout').as('logout')
