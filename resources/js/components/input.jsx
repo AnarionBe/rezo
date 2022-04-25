@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { basil } from '@spices/basil'
 import classNames from 'classnames'
-import { FaEyeSlash, FaEye } from 'react-icons/fa'
 import Button from './button'
 
 export default ({
@@ -48,7 +47,7 @@ export default ({
         { type === 'password' &&
           <Button
             action={ e => handleShowField(e) }
-            classes="absolute right-0 top-0 bottom-0 my-2 mr-2"
+            classes="absolute right-0 top-0 bottom-0 my-2 mr-2 border-0"
             iconPre={ showField ? 'FaEye' : 'FaEyeSlash' }
             size="s"
           />

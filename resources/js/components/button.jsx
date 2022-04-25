@@ -36,4 +36,7 @@ const buttonClasses = [
   'bg-gray-900',
   'rounded-lg',
   'hover:bg-gray-700',
+  'border-gray-700',
+  'border-2',
+  'hover:border-gray-500'
 ]
