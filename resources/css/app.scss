@@ -1,0 +1,12 @@
+@import "./tailwind.css";
+
+:root {
+  color-scheme: dark;
+
+  @apply bg-gray-900;
+  @apply text-gray-50;
+}
+
+#app {
+  @apply h-screen;
+}

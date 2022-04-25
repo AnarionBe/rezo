@@ -12,6 +12,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore.enableReactPreset() // enable react support
       .enablePostCssLoader() // enable postcss-loader
+      .enableSassLoader() // enable sass/scss loader
 
 /*
 |--------------------------------------------------------------------------

@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDom from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
-import '../css/app.css'
+import '../css/app.scss'
+import 'babel-polyfill'
 
 import { StoreProvider } from './store'
 
@@ -17,5 +18,3 @@ const Root = () => {
 const root = ReactDom.createRoot(document.getElementById('app'))
 
 root.render(<Root />)
-
-
