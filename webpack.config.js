@@ -1,5 +1,6 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
+const dotenv = require('dotenv')
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ Encore.enableReactPreset() // enable react support
         '@helpers': join(__dirname, 'resources/js/helpers'),
         '@store': join(__dirname, 'resources/js/store'),
       })
+      .configureDefinePlugin(options => {
+        const env = dotenv.config().parsed
+
+        options['process.env'].REACT_APP_API_URL = JSON.stringify(env.REACT_APP_API_URL)
+    })
 
 /*
 |--------------------------------------------------------------------------
