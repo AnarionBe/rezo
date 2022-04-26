@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
-import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class user extends BaseModel {
   @column({ isPrimary: true })
@@ -30,21 +29,5 @@ export default class user extends BaseModel {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
     }
-  }
-}
-
-export const getValidation = field => {
-  switch(field) {
-    case 'email':
-      return schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })])
-
-    case 'password':
-      return schema.string({}, [rules.confirmed()])
-
-    case 'username':
-      return schema.string({}, [rules.unique({ table: 'users', column: 'username' })])
-
-    default:
-      return null
   }
 }

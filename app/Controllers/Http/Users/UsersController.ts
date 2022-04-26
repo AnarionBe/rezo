@@ -1,21 +1,11 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import User, { getValidation } from 'App/Models/User'
-import { schema } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User'
+import UpdateValidator from 'App/Validators/UpdateValidator'
 
 export default class UsersController {
   public async update({ request, response }: HttpContextContract) {
     try {
-      const validatorSchema = {}
-
-      for(const field in request.body()) {
-        const validation = getValidation(field)
-
-        if(validation) {
-          validatorSchema[field] = validation
-        }
-      }
-
-      const data = await request.validate({ schema: await schema.create(validatorSchema) })
+      const data = await request.validate(UpdateValidator)
 
       const { id } = request.params()
       const user = await User.findOrFail(id)
