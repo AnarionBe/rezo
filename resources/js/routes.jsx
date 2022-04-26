@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Home from './views/home'
-import Register from './views/register'
-import Login from './views/login'
+import { Home } from '@views/home'
+import { Register } from '@views/register'
+import { Login } from '@views/login'
 
 export default [
   {

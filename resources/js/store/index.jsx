@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 import { useRoutes } from 'react-router-dom'
 
-import routes from '../routes'
+import routes from '@/js/routes'
 
 const StoreContext = createContext({});
 

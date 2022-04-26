@@ -8618,6 +8618,11 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
+use-named-state@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/use-named-state/-/use-named-state-1.0.0.tgz#a432fce1a36b8e4b25fe9f123cd6122215764583"
+  integrity sha512-UOS/lfoeVdzTpyZYc0e5el6UV7zT2gk3xAS3Rt5cXmmPokWZXt5ImmH+i7ZwWnnDBn1yo+t24TzyacdLTBXRoA==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"

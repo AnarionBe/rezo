@@ -13,6 +13,13 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore.enableReactPreset() // enable react support
       .enablePostCssLoader() // enable postcss-loader
       .enableSassLoader() // enable sass/scss loader
+      .addAliases({
+        '@': join(__dirname, 'resources'),
+        '@views': join(__dirname, 'resources/js/views'),
+        '@components': join(__dirname, 'resources/js/components'),
+        '@helpers': join(__dirname, 'resources/js/helpers'),
+        '@store': join(__dirname, 'resources/js/store'),
+      })
 
 /*
 |--------------------------------------------------------------------------

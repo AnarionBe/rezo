@@ -2,14 +2,18 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
-import Input from '../components/input'
-import Button from '../components/button'
+import { Input } from '@components/input'
+import { Button } from '@components/button'
 
-export default () => {
+import { useErrors } from '@helpers/useErrors'
+
+export const Login = () => {
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  const Errors = useErrors()
 
   const handleSubmit = async e => {
     try {
@@ -22,7 +26,7 @@ export default () => {
 
       navigate('/')
     } catch(e) {
-      console.error(e)
+      Errors.set(e)
     }
   }
 
@@ -33,15 +37,21 @@ export default () => {
         className="bg-gray-800 p-4 mx-4 rounded-xl"
       >
         <Input
+          error={ Errors.get('email') }
+          name="email"
           placeholder="eg. elon@spacex.com"
+          required
           setValue={ setEmail }
           type="email"
           value={ email }
         >Email</Input>
 
         <Input
+          error={ Errors.get('password') }
+          name="password"
           classes="mt-4"
           placeholder="******"
+          required
           setValue={ setPassword }
           type="password"
           value={ password }
@@ -50,6 +60,7 @@ export default () => {
         <Button
           action={ handleSubmit }
           classes="mt-6 w-full"
+          disabled={ !password || !email }
         >Login</Button>
 
         <span className="inline-block mt-2">Need an account? <Link className="underline text-blue-500" to="/register">Register</Link></span>

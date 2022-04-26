@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDebugState as useState } from 'use-named-state'
 import { basil } from '@spices/basil'
 import classNames from 'classnames'
-import Button from './button'
+import { Button } from '@components/button'
 
-export default ({
+export const Input = ({
   children = '',
   classes = '',
+  error,
   name = basil.uniqId('input-'),
   placeholder = '',
+  required = false,
   setValue,
   type = 'text',
   value,
 }) => {
-  const [showField, setShowField] = useState(false)
+  const [showField, setShowField] = useState('showField', false)
 
   const handleInput = e => {
     setValue(e.target.value)
@@ -30,16 +33,24 @@ export default ({
         <label
           className="inline-block mb-1 relative"
           htmlFor={ name }
-        >{ children }</label>
+        >
+          { children }
+          { required &&
+            <span className="pl-1 text-red-600 text-lg">*</span>
+          }
+        </label>
       }
 
       <div className="relative">
         <input
           onInput={ e => handleInput(e) }
-          className={classNames(fieldClasses)}
+          className={classNames(fieldClasses, {
+            '-is-errored': error
+          })}
           id={ name }
           name={ name }
           placeholder={ placeholder }
+          required={ required }
           type={ type === 'password' && showField ? 'text' : type }
           value={ value }
         />
@@ -50,9 +61,14 @@ export default ({
             classes="absolute right-0 top-0 bottom-0 my-2 mr-2 border-0"
             iconPre={ showField ? 'FaEye' : 'FaEyeSlash' }
             size="s"
+            tabIndex="-1"
           />
         }
       </div>
+
+      { basil.get(error, 'message') &&
+        <span className="text-red-500">{ error.message }</span>
+      }
     </div>
   )
 }
@@ -64,4 +80,5 @@ const fieldClasses = [
   'border-gray-700',
   'w-full',
   'p-2',
+  'err:border-red-500',
 ]

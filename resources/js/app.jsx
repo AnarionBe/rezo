@@ -9,9 +9,11 @@ import { StoreProvider } from './store'
 
 const Root = () => {
   return (
-    <BrowserRouter>
-      <StoreProvider />
-    </BrowserRouter>
+    <React.StrictMode>
+      <BrowserRouter>
+        <StoreProvider />
+      </BrowserRouter>
+    </React.StrictMode>
   )
 }
 
