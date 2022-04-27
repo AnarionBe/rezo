@@ -25,9 +25,16 @@ export default class AuthController {
       const rememberMe = request.input('remember_me') || false
 
       await auth.use('web').attempt(email, password, rememberMe)
+
       return response.status(200)
     } catch(e) {
-      return response.send(e)
+      const res = {
+        errors: [{
+          field: 'auth',
+          message: 'Invalid credentials'
+        }]
+      }
+      return response.status(401).send(res)
     }
   }
 

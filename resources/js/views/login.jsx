@@ -37,7 +37,7 @@ export const Login = () => {
         className="bg-gray-800 p-4 mx-4 rounded-xl"
       >
         <Input
-          error={ Errors.get('email') }
+          error={ Errors.get('auth') }
           name="email"
           placeholder="eg. elon@spacex.com"
           required
@@ -47,9 +47,9 @@ export const Login = () => {
         >Email</Input>
 
         <Input
-          error={ Errors.get('password') }
-          name="password"
           classes="mt-4"
+          error={ Errors.get('auth') }
+          name="password"
           placeholder="******"
           required
           setValue={ setPassword }
