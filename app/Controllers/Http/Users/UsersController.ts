@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
-import UpdateValidator from 'App/Validators/UpdateValidator'
+import UpdateValidator from 'App/Validators/Users/UpdateValidator'
 
 export default class UsersController {
   public async update({ request, response }: HttpContextContract) {

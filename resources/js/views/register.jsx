@@ -22,7 +22,7 @@ export const Register = () => {
     try {
       e.preventDefault()
 
-      await axios.post(`${process.env.REACT_APP_API_URL}/register`, {
+      await axios.post(`/api/v1/register`, {
         email,
         password,
         password_confirmation: passwordConfirm,

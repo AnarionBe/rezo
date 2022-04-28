@@ -21,6 +21,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 import './routes/users'
+import './routes/posts'
 
 Route.group(() => {
   Route.post('/login', 'Users/AuthController.login').as('login')
