@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useContext, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
-import { Input } from '@components/input'
-import { Button } from '@components/button'
+import { Input } from '@components/forms/input'
+import { Button } from '@components/actions/button'
 
 import { useErrors } from '@helpers/useErrors'
+import { StoreContext } from '@store'
 
-export const Login = () => {
+export const Login = (props) => {
   const navigate = useNavigate()
+
+  const { auth } = useContext(StoreContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,12 +20,7 @@ export const Login = () => {
   const handleSubmit = async e => {
     try {
       e.preventDefault()
-
-      await axios.post(`/api/v1/login`, {
-        email,
-        password
-      })
-
+      await auth.login({ email, password })
       navigate('/')
     } catch(e) {
       Errors.set(e)
@@ -34,9 +31,12 @@ export const Login = () => {
     <section className="flex justify-center items-center h-full">
       <form
         onSubmit={ e => handleSubmit(e) }
-        className="bg-gray-800 p-4 mx-4 rounded-xl"
+        className="bg-gray-800 p-8 mx-4 rounded-xl"
       >
+        <h1 className="text-3xl">Create an account</h1>
+
         <Input
+          classes="mt-6"
           error={ Errors.get('auth') }
           name="email"
           placeholder="eg. elon@spacex.com"

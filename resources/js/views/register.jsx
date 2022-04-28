@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useDebugState as useState } from 'use-named-state'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
-import { Input } from '@components/input'
-import { Button } from '@components/button'
+import { Input } from '@components/forms/input'
+import { Button } from '@components/actions/button'
 
 import { useErrors } from '@helpers/useErrors'
+import { StoreContext } from '@store'
 
 export const Register = () => {
   const navigate = useNavigate()
+
+  const { auth } = useContext(StoreContext)
 
   const [email, setEmail] = useState('email', '')
   const [password, setPassword] = useState('password', '')
@@ -21,14 +24,7 @@ export const Register = () => {
   const handleSubmit = async e => {
     try {
       e.preventDefault()
-
-      await axios.post(`/api/v1/register`, {
-        email,
-        password,
-        password_confirmation: passwordConfirm,
-        username
-      })
-
+      await auth.register({ email, password, passwordConfirm, username })
       navigate('/')
     } catch(e) {
       Errors.set(e)
@@ -39,9 +35,12 @@ export const Register = () => {
     <section className="flex justify-center items-center h-full">
       <form
         onSubmit={ e => handleSubmit(e) }
-        className="bg-gray-800 p-4 mx-4 rounded-xl"
+        className="bg-gray-800 p-8 mx-4 rounded-xl"
       >
+        <h1 className="text-3xl">Create an account</h1>
+
         <Input
+          classes="mt-6"
           error={ Errors.get('email') }
           name="email"
           placeholder="eg. elon@spacex.com"

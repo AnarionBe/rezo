@@ -24,6 +24,7 @@ import './routes/users'
 import './routes/posts'
 
 Route.group(() => {
+  Route.get('/ping', () => {}).as('ping').middleware('auth')
   Route.post('/login', 'Users/AuthController.login').as('login')
   Route.post('/register', 'Users/AuthController.register').as('register')
   Route.post('/logout', 'Users/AuthController.logout').as('logout')

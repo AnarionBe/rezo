@@ -7,14 +7,14 @@ import { Login } from '@views/login'
 export default [
   {
     path: '/',
-    element: <Home />
+    element: <Home auth name="home" />,
   },
   {
     path: '/register',
-    element: <Register />
+    element: <Register name="register" />,
   },
   {
     path: '/login',
-    element: <Login />
+    element: <Login name="login" />,
   }
 ]

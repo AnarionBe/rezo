@@ -2,7 +2,7 @@ import React from 'react'
 import { useDebugState as useState } from 'use-named-state'
 import { basil } from '@spices/basil'
 import classNames from 'classnames'
-import { Button } from '@components/button'
+import { Button } from '@components/actions/button'
 
 export const Input = ({
   children = '',
