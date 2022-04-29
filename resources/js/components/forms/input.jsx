@@ -6,7 +6,7 @@ import { Button } from '@components/actions/button'
 
 export const Input = ({
   children = '',
-  classes = '',
+  className = '',
   error,
   name = basil.uniqId('input-'),
   placeholder = '',
@@ -28,7 +28,7 @@ export const Input = ({
   }
 
   return (
-    <div className={ classNames('input', classes) }>
+    <div className={ classNames('input', className) }>
       { children !== '' &&
         <label
           className="inline-block mb-1 relative"
@@ -58,7 +58,7 @@ export const Input = ({
         { type === 'password' &&
           <Button
             action={ e => handleShowField(e) }
-            classes="absolute right-0 top-0 bottom-0 my-2 mr-2 border-0"
+            className="absolute right-0 top-0 bottom-0 my-2 mr-2 border-0"
             iconPre={ showField ? 'FaEye' : 'FaEyeSlash' }
             size="s"
             tabIndex="-1"

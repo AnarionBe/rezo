@@ -22,7 +22,7 @@ export default class AuthController {
     try {
       const email = request.input('email')
       const password = request.input('password')
-      const rememberMe = request.input('remember_me') || false
+      const rememberMe = request.input('rememberMe') || false
 
       await auth.use('web').attempt(email, password, rememberMe)
 

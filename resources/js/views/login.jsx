@@ -7,7 +7,7 @@ import { Button } from '@components/actions/button'
 import { useErrors } from '@helpers/useErrors'
 import { StoreContext } from '@store'
 
-export const Login = (props) => {
+export const Login = () => {
   const navigate = useNavigate()
 
   const { auth } = useContext(StoreContext)
@@ -36,7 +36,7 @@ export const Login = (props) => {
         <h1 className="text-3xl">Create an account</h1>
 
         <Input
-          classes="mt-6"
+          className="mt-6"
           error={ Errors.get('auth') }
           name="email"
           placeholder="eg. elon@spacex.com"
@@ -47,7 +47,7 @@ export const Login = (props) => {
         >Email</Input>
 
         <Input
-          classes="mt-4"
+          className="mt-4"
           error={ Errors.get('auth') }
           name="password"
           placeholder="******"
@@ -59,8 +59,9 @@ export const Login = (props) => {
 
         <Button
           action={ handleSubmit }
-          classes="mt-6 w-full"
+          className="mt-6 w-full"
           disabled={ !password || !email }
+          type="submit"
         >Login</Button>
 
         <span className="inline-block mt-2">Need an account? <Link className="underline text-blue-500" to="/register">Register</Link></span>

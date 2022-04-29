@@ -40,7 +40,7 @@ export const Register = () => {
         <h1 className="text-3xl">Create an account</h1>
 
         <Input
-          classes="mt-6"
+          className="mt-6"
           error={ Errors.get('email') }
           name="email"
           placeholder="eg. elon@spacex.com"
@@ -53,7 +53,7 @@ export const Register = () => {
         <Input
           error={ Errors.get('username') }
           name="username"
-          classes="mt-4"
+          className="mt-4"
           placeholder="eg. elonmusk"
           required
           setValue={ setUsername }
@@ -63,7 +63,7 @@ export const Register = () => {
         <Input
           error={ Errors.get('password') }
           name="password"
-          classes="mt-4"
+          className="mt-4"
           placeholder="******"
           required
           setValue={ setPassword }
@@ -74,7 +74,7 @@ export const Register = () => {
         <Input
           error={ Errors.get('password_confirmation') }
           name="password_confirmation"
-          classes="mt-4"
+          className="mt-4"
           placeholder="******"
           required
           setValue={ setPasswordConfirm }
@@ -84,8 +84,9 @@ export const Register = () => {
 
         <Button
           action={ handleSubmit }
-          classes="mt-8 w-full"
+          className="mt-8 w-full"
           disabled={ !password || !passwordConfirm || !email || !username }
+          type="submit"
         >Register</Button>
 
         <span className="inline-block mt-4">Already an account? <Link className="underline text-blue-500" to="/login">Sign in</Link></span>

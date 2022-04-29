@@ -1,24 +1,31 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { basil } from '@spices/basil'
 import { useNavigate } from 'react-router-dom'
+import { useNamedState as useState } from 'use-named-state'
 
 export const GuardedRoute = ({ children, authStore }) => {
   const { auth = false, name = 'register'} = basil.get(children, 'props.children.props', {})
   const navigate = useNavigate()
+  const [status, setStatus] = useState('status', null)
+
+  const checkAuth = async () => {
+    const res = await authStore.checkAuth()
+    setStatus(res)
+  }
 
   useEffect(() => {
     if(auth) {
-      authStore.checkAuth()
+      checkAuth()
+    } else {
+      setStatus(true)
     }
   }, [children])
 
-  useEffect(() => {
-    if(auth && !authStore.state.isLoggedIn) {
-      navigate('/register')
-    }
-  }, [authStore.state.isLoggedIn])
-
-  if(!auth || authStore.state.isLoggedIn) {
+  if(status === true) {
     return children
+  }
+
+  if(status === false) {
+    navigate('/register')
   }
 }
