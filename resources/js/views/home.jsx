@@ -1,12 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { useDebugState as useState } from 'use-named-state'
+import { StoreContext } from '@store'
+import { Input } from '@components/forms/input'
+import { Button } from '@components/actions/button'
 
-export const Home = (props) => {
-  console.log(props)
+export const Home = () => {
+  const { posts } = useContext(StoreContext)
+
+  const [content, setContent] = useState('form', '')
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    await posts.create({ content })
+  }
+
   return (
     <div>
-      <h1>Hello Home</h1>
-      <Link to="/about">About</Link>
+      <form
+        onSubmit={ e => handleSubmit(e) }
+      >
+        <Input
+          error={ posts.Errors.get('content') }
+          name="content"
+          placeholder="What's on your mind?"
+          setValue={ setContent }
+          value={ content }
+        />
+
+        <Button action={ handleSubmit }>Create post</Button>
+      </form>
     </div>
   )
 }

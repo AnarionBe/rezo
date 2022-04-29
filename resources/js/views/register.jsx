@@ -57,7 +57,6 @@ export const Register = () => {
           placeholder="eg. elonmusk"
           required
           setValue={ setUsername }
-          type="text"
           value={ username }
         >Username</Input>
 
