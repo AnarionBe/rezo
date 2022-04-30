@@ -27,18 +27,20 @@ export default class PostsController {
     }
   }
 
-  public async delete({ request, response }: HttpContextContract) {
+  public async delete({ request, response, auth }: HttpContextContract) {
     try {
       const { id } = request.params()
-      const post = await Post.find(id)
+      const user = await auth.authenticate()
+      const post = await Post.findOrFail(id)
 
-      if(!post) return response.notFound(id)
+      if(user.id !== post.userId) return response.unauthorized()
 
       await post.delete()
 
       return response.send(post)
     } catch(e) {
-      response.status(500).send(e)
+      console.log(e)
+      response.status(404).send(e)
     }
   }
 }

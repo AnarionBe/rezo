@@ -24,9 +24,9 @@ export default class AuthController {
       const password = request.input('password')
       const rememberMe = request.input('rememberMe') || false
 
-      await auth.use('web').attempt(email, password, rememberMe)
+      const user = await auth.use('web').attempt(email, password, rememberMe)
 
-      return response.status(200)
+      return response.status(200).send(user)
     } catch(e) {
       const res = {
         errors: [{

@@ -6,17 +6,23 @@ export const Menu = ({
   className = '',
   options = []
 }) => {
+  const enabledOptions = options.filter(opt => !opt.disabled)
+
+  const renderOption = (opt, idx) => {
+    return (
+      <Button
+        action={ e => opt.action(e) }
+        appearance={ opt.appearance }
+        className={ idx !== 0 && 'mt-2' }
+        key={ idx }
+        size={ opt.size }
+      >{ opt.label }</Button>
+    )
+  }
+
   return (
     <div className={ classNames(classes, className) }>
-      { options.map((o, i) => (
-        <Button
-          action={ e => o.action(e) }
-          appearance={ o.appearance }
-          className={ i !== 0 && 'mt-2' }
-          key={ i }
-          size={ o.size }
-        >{ o.label }</Button>
-      )) }
+      { enabledOptions.map(renderOption) }
     </div>
   )
 }

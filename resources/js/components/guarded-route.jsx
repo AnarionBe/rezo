@@ -14,7 +14,7 @@ export const GuardedRoute = ({ children, authStore }) => {
   }
 
   useEffect(() => {
-    if(auth) {
+    if(auth && !authStore.state.currentUser) {
       checkAuth()
     } else {
       setStatus(true)
