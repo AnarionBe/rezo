@@ -11,10 +11,10 @@ export default class AuthController {
       return response.created(user)
     } catch(e) {
       if(e.messages) {
-        return response.status(422).send(e.messages)
+        return response.unprocessableEntity(e.messages)
       }
 
-      return response.status(500)
+      return response.internalServerError()
     }
   }
 
@@ -34,7 +34,7 @@ export default class AuthController {
           message: 'Invalid credentials'
         }]
       }
-      return response.status(401).send(res)
+      return response.unauthorized(res)
     }
   }
 
@@ -44,6 +44,16 @@ export default class AuthController {
       return response.status(200)
     } catch(e) {
       return response.send(e)
+    }
+  }
+
+  public async ping({ auth, response }: HttpContextContract) {
+    try {
+      const user = await auth.authenticate()
+
+      return user
+    } catch(e) {
+      return response.unauthorized()
     }
   }
 }
