@@ -8,7 +8,10 @@ export const Header = ({}) => {
   return (
     <header className="bg-gray-800">
       <div className="container mx-auto flex justify-between items-center p-4">
-        <div>Rezo</div>
+        <Button
+          appearance="link"
+          to={{ pathname: '/' }}
+        >Rezo</Button>
 
         <div>
           <Button
