@@ -12,7 +12,6 @@ export default class UsersController {
 
       return await user.merge(data).save()
     } catch(e) {
-      console.log(e)
       if(e.messages) {
         return response.status(422).send(e.messages)
       }
@@ -33,9 +32,9 @@ export default class UsersController {
     }
   }
 
-  public async linkWallet({ request, response }: HttpContextContract) {
+  public async linkWallet({ request, response, auth }: HttpContextContract) {
     try {
-      const { id } = request.params()
+      const { id } = await auth.authenticate()
       const wallet = request.input('wallet')
       const user = await User.findOrFail(id)
 
