@@ -18,11 +18,11 @@ export const Post = ({
       action: async e => {
         e.preventDefault()
 
-        posts.deletePost(data.id)
+        posts.deletePost(data?.id)
       },
       appearance: 'subtle',
       size: 'xs',
-      disabled: auth.state.currentUser.id !== data.author.id,
+      disabled: auth.state.currentUser?.id !== data.author?.id,
     }
   ]
 
@@ -40,9 +40,9 @@ export const Post = ({
         <div className="flex items-center gap-2">
           <img
             className="rounded-full h-8 w-8"
-            src={ auth.state.currentUser.profile_picture }
+            src={ data.author?.profile_picture }
           />
-          <h4 className="text-lg font-semibold">{ data?.author.username || 'User deleted' }</h4>
+          <h4 className="text-lg font-semibold">{ data.author?.username || 'User deleted' }</h4>
         </div>
 
         { enabledOptions.length > 0 && (
