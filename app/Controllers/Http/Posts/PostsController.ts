@@ -11,7 +11,12 @@ export default class PostsController {
 
       await post.related('author').associate(user)
 
-      return response.created(post)
+      const res = await Post
+        .query()
+        .preload('author')
+        .where('id', post.id)
+
+      return response.created(res[0])
     } catch(e) {
       response.status(500).send(e)
     }
