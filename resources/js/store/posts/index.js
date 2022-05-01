@@ -1,8 +1,7 @@
 import { useDebugState as useState } from 'use-named-state'
 import { useErrors } from 'helpers/useErrors'
-import axios from 'axios'
 
-export const usePosts = () => {
+export const usePosts = ({ axios }) => {
   const [posts, setPosts] = useState('posts', [])
   const [isCreating, setIsCreating] = useState('isCreating', false)
   const [isFetchingList, setIsFetchingList] = useState('isFetchingList', false)
@@ -13,7 +12,7 @@ export const usePosts = () => {
   const create = async ({ content }) => {
     try {
       setIsCreating(true)
-      const { data } = await axios.post('/api/v1/posts', { content })
+      const { data } = await axios.post('/posts', { content })
       setPosts([data, ...posts])
       return data
     } catch(e) {
@@ -26,7 +25,7 @@ export const usePosts = () => {
   const get = async () => {
     try {
       setIsFetchingList(true)
-      const { data } = await axios.get('/api/v1/posts')
+      const { data } = await axios.get('/posts')
       setPosts(data)
       return data
     } catch(e) {
@@ -39,7 +38,7 @@ export const usePosts = () => {
   const deletePost = async id => {
     try {
       setIsDeleting(true)
-      const { data } = await axios.delete(`/api/v1/posts/${id}`)
+      const { data } = await axios.delete(`/posts/${id}`)
       setPosts(posts.filter(post => post.id !== id))
       return data
     } catch(e) {
