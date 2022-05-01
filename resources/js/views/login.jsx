@@ -21,7 +21,6 @@ export const Login = () => {
     try {
       e.preventDefault()
       await auth.login({ email, password })
-      console.log('test')
       navigate('/')
     } catch(e) {
       Errors.set(e)

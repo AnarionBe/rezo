@@ -1,10 +1,23 @@
-import axios from 'axios'
+import { useEffect } from 'react'
+import { useDebugState as useState } from 'use-named-state'
 
-export const useAuth = () => {
+export const useAuth = ({ axios }) => {
+  const [currentUser, setCurrentUser] = useState('currentUser', {})
+
+  useEffect(() => {
+    checkAuth()
+  }, [])
+
+  useEffect(() => {
+    if(currentUser !== {}) {
+      window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
+    }
+  }, [currentUser])
+
   const checkAuth = async () => {
     try {
-      const { data } = await axios.get('/api/v1/ping')
-      sessionStorage.setItem('currentUser', JSON.stringify(data))
+      const { data } = await axios.get('/ping')
+      setCurrentUser(data)
       return true
     } catch(e) {
       console.error('Auth error:', e)
@@ -13,21 +26,26 @@ export const useAuth = () => {
   }
 
   const login = async ({ email, password }) => {
-    const { data } = await axios.post('/api/v1/login', { email, password })
-    sessionStorage.setItem('currentUser', JSON.stringify(data))
+    const { data } = await axios.post('/login', { email, password })
+    setCurrentUser(data)
     return
   }
 
   const register = async ({ email, password, passwordConfirm, username }) => {
-    const { data } = await axios.post('/api/v1/register', { email, password, password_confirmation: passwordConfirm, username })
-    sessionStorage.setItem('currentUser', JSON.stringify(data))
+    const { data } = await axios.post('/register', { email, password, password_confirmation: passwordConfirm, username })
+    setCurrentUser(data)
     return
   }
 
-  const currentUser = (() => {
-    const user = sessionStorage.getItem('currentUser')
-    return user ? JSON.parse(user) : null
-  })()
+  const linkWallet = async wallet => {
+    try {
+      const { data } = await axios.post('/users/link-wallet', { wallet })
+      setCurrentUser(data)
+      return data
+    } catch(e) {
+      return e
+    }
+  }
 
   return {
     state: {
@@ -35,6 +53,7 @@ export const useAuth = () => {
     },
     checkAuth,
     login,
-    register
+    register,
+    linkWallet
   }
 }
