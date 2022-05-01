@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
-import { Input } from '@components/forms/input'
-import { Button } from '@components/actions/button'
+import { Input } from 'components/forms/input'
+import { Button } from 'components/actions/button'
 
-import { useErrors } from '@helpers/useErrors'
-import { StoreContext } from '@store'
+import { useErrors } from 'helpers/useErrors'
+import { StoreContext } from 'store'
 
 export const Login = () => {
   const navigate = useNavigate()

@@ -1,5 +1,5 @@
 import { useDebugState as useState } from 'use-named-state'
-import { useErrors } from '@helpers/useErrors'
+import { useErrors } from 'helpers/useErrors'
 import axios from 'axios'
 
 export const usePosts = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Button } from '@components/actions/button'
+import { Button } from 'components/actions/button'
 
 export const Menu = ({
   className = '',

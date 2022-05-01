@@ -61,21 +61,7 @@ export const Button =  ({
     return renderLink()
   }
 
-  return (
-    <button
-      onClick={ e => action(e) }
-      className={ classNames(appearanceClasses[appearance], className, {
-        'px-4 py-2': size === 'm',
-        'px-2': size === 's',
-        'px-1 text-sm': size === 'xs',
-      })}
-      disabled={ disabled }
-      tabIndex={ tabIndex }
-      type={ type }
-    >
-
-    </button>
-  )
+  return renderButton()
 }
 
 const appearanceClasses = {

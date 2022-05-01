@@ -16,7 +16,8 @@ export default class UsersController {
       if(e.messages) {
         return response.status(422).send(e.messages)
       }
-      return response.status(500)
+
+      return response.internalServerError(e)
     }
   }
 
@@ -28,7 +29,20 @@ export default class UsersController {
 
       return await user.delete()
     } catch(e) {
-      return response.status(500)
+      return response.internalServerError(e)
+    }
+  }
+
+  public async linkWallet({ request, response }: HttpContextContract) {
+    try {
+      const { id } = request.params()
+      const wallet = request.input('wallet')
+      const user = await User.findOrFail(id)
+
+      return await user.merge({ wallet }).save()
+    } catch(e) {
+      console.log(e)
+      return response.internalServerError(e)
     }
   }
 }

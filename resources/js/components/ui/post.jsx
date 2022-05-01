@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { Button } from '@components/actions/button'
-import { Menu } from '@components/ui/menu'
+import { Button } from 'components/actions/button'
+import { Menu } from 'components/ui/menu'
 import { useDebugState as useState } from 'use-named-state'
-import { StoreContext } from '@store'
+import { StoreContext } from 'store'
 
 export const Post = ({
   data,
@@ -35,9 +35,15 @@ export const Post = ({
   }
 
   return (
-    <div className={ classNames(className, 'bg-gray-900 p-4 rounded-lg') }>
+    <div className={ classNames(className, 'bg-gray-800 p-4 rounded-lg') }>
       <div className="flex justify-between">
-        <h4 className="text-lg font-semibold">{ data?.author.username || 'User deleted' }</h4>
+        <div className="flex items-center gap-2">
+          <img
+            className="rounded-full h-8 w-8"
+            src={ auth.state.currentUser.profile_picture }
+          />
+          <h4 className="text-lg font-semibold">{ data?.author.username || 'User deleted' }</h4>
+        </div>
 
         { enabledOptions.length > 0 && (
           <div className="relative">
@@ -58,7 +64,7 @@ export const Post = ({
         )}
       </div>
 
-      <div className="mt-2">{ data.content }</div>
+      <div className="mt-4">{ data.content }</div>
     </div>
   )
 }

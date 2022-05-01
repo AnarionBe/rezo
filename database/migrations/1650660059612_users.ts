@@ -10,6 +10,8 @@ export default class UsersSchema extends BaseSchema {
       table.string('username', 255).notNullable()
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
+      table.string('profile_picture').nullable()
+      table.string('wallet').nullable()
 
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
@@ -18,7 +20,7 @@ export default class UsersSchema extends BaseSchema {
       table.timestamp('updated_at', { useTz: true }).notNullable()
     })
 
-    
+
   }
 
   public async down() {

@@ -18,6 +18,12 @@ export default class user extends BaseModel {
   @column()
   public rememberMeToken?: string
 
+  @column()
+  public profilePicture?: string
+
+  @column()
+  public wallet?: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -28,6 +34,13 @@ export default class user extends BaseModel {
   public static async hashPassword (user: user) {
     if (user.$dirty.password) {
       user.password = await Hash.make(user.password)
+    }
+  }
+
+  @beforeSave()
+  public static async generateProfilePicture(user: user) {
+    if(!user.profilePicture) {
+      user.profilePicture = `https://avatars.dicebear.com/v2/jdenticon/${user.username}.svg`
     }
   }
 }

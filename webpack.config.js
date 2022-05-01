@@ -1,5 +1,6 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,14 @@ Encore.enableReactPreset() // enable react support
       .enableSassLoader() // enable sass/scss loader
       .addAliases({
         '@': join(__dirname, 'resources'),
-        '@views': join(__dirname, 'resources/js/views'),
-        '@components': join(__dirname, 'resources/js/components'),
-        '@helpers': join(__dirname, 'resources/js/helpers'),
-        '@store': join(__dirname, 'resources/js/store'),
+        'views': join(__dirname, 'resources/js/views'),
+        'components': join(__dirname, 'resources/js/components'),
+        'helpers': join(__dirname, 'resources/js/helpers'),
+        'store': join(__dirname, 'resources/js/store'),
       })
+      .addPlugin(new NodePolyfillPlugin({
+        excludeAliases: ["console"]
+      }))
 
 /*
 |--------------------------------------------------------------------------

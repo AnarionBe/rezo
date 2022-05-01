@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { StoreContext } from '@store'
-import { Button } from '@components/actions/button'
+import { StoreContext } from 'store'
+import { Button } from 'components/actions/button'
 
 export const Header = ({}) => {
   const { auth } = useContext(StoreContext)
@@ -13,14 +13,14 @@ export const Header = ({}) => {
         <div>
           <Button
             appearance="link"
-            className="flex items-center"
+            className="flex items-center gap-2"
             to={{ pathname: '/profile' }}
           >
             {auth.state.currentUser.username}
 
             <img
-              className="rounded-full ml-4 h-8"
-              src={ `https://avatars.dicebear.com/v2/jdenticon/${auth.state.currentUser.username}.svg` }
+              className="rounded-full h-8 w-8"
+              src={ auth.state.currentUser.profile_picture }
             />
           </Button>
         </div>

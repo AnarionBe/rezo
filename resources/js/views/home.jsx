@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { useDebugState as useState } from 'use-named-state'
-import { StoreContext } from '@store'
-import { Input } from '@components/forms/input'
-import { Button } from '@components/actions/button'
-import { Post } from '@components/ui/post'
-import { Header } from '@components/ui/header'
+import { StoreContext } from 'store'
+import { Input } from 'components/forms/input'
+import { Button } from 'components/actions/button'
+import { Post } from 'components/ui/post'
+import { Header } from 'components/ui/header'
 
 export const Home = () => {
   const { posts } = useContext(StoreContext)
@@ -25,9 +25,9 @@ export const Home = () => {
     <>
       <Header />
 
-      <div className="container mx-auto bg-gray-800 p-8 rounded-lg mt-8">
+      <div className="container mx-auto mt-8">
         <form
-          className="flex mb-8"
+          className="flex mb-8 gap-4 px-4"
           onSubmit={ e => handleSubmit(e) }
         >
           <Input
@@ -41,19 +41,19 @@ export const Home = () => {
 
           <Button
             action={ handleSubmit }
-            className="ml-4"
             disabled={ posts.state.isCreating }
           >Create post</Button>
         </form>
 
-        { posts.state.posts.map((e, i) => (
-          <Post
-            className={ i !== 0 && 'mt-4' }
-            key={ e.id }
-            data={ e }
-            posts={ posts }
-          />
-        )) }
+        <section className="flex flex-col gap-4 p-4 rounded-lg">
+          { posts.state.posts.map((e, i) => (
+            <Post
+              key={ e.id }
+              data={ e }
+              posts={ posts }
+            />
+          )) }
+        </section>
       </div>
     </>
   )

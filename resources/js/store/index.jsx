@@ -1,9 +1,9 @@
 import React, { createContext, useEffect } from 'react'
 import { useRoutes } from 'react-router-dom'
-import { GuardedRoute } from '@components/guarded-route'
+import { GuardedRoute } from 'components/guarded-route'
 
-import { useAuth } from '@store/auth'
-import { usePosts } from '@store/posts'
+import { useAuth } from 'store/auth'
+import { usePosts } from 'store/posts'
 
 import routes from '@/js/routes'
 
