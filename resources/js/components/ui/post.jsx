@@ -10,7 +10,7 @@ export const Post = ({
   className,
 }) => {
   const [showMenu, setShowMenu] = useState('showMenu', false)
-  const { posts, auth } = useContext(StoreContext)
+  const { posts, user } = useContext(StoreContext)
 
   const options = [
     {
@@ -22,7 +22,7 @@ export const Post = ({
       },
       appearance: 'subtle',
       size: 'xs',
-      disabled: auth.state.currentUser?.id !== data.author?.id,
+      disabled: user.state.currentUser?.id !== data.author?.id,
     }
   ]
 

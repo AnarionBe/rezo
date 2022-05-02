@@ -1,34 +1,23 @@
 import React, { useContext } from 'react'
 import { useDebugState as useState } from 'use-named-state'
-import axios from 'axios'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Input } from 'components/forms/input'
 import { Button } from 'components/actions/button'
 
-import { useErrors } from 'helpers/useErrors'
 import { StoreContext } from 'store'
 
 export const Register = () => {
-  const navigate = useNavigate()
-
-  const { auth } = useContext(StoreContext)
+  const { user } = useContext(StoreContext)
 
   const [email, setEmail] = useState('email', '')
   const [password, setPassword] = useState('password', '')
   const [passwordConfirm, setPasswordConfirm] = useState('passwordConfirm', '')
   const [username, setUsername] = useState('username', '')
 
-  const Errors = useErrors()
-
   const handleSubmit = async e => {
-    try {
-      e.preventDefault()
-      await auth.register({ email, password, passwordConfirm, username })
-      navigate('/')
-    } catch(e) {
-      Errors.set(e)
-    }
+    e.preventDefault()
+    user.register({ email, password, passwordConfirm, username })
   }
 
   return (
@@ -41,7 +30,7 @@ export const Register = () => {
 
         <Input
           className="mt-6"
-          error={ Errors.get('email') }
+          error={ user.Errors.get('email') }
           name="email"
           placeholder="eg. elon@spacex.com"
           required
@@ -51,7 +40,7 @@ export const Register = () => {
         >Email</Input>
 
         <Input
-          error={ Errors.get('username') }
+          error={ user.Errors.get('username') }
           name="username"
           className="mt-4"
           placeholder="eg. elonmusk"
@@ -61,7 +50,7 @@ export const Register = () => {
         >Username</Input>
 
         <Input
-          error={ Errors.get('password') }
+          error={ user.Errors.get('password') }
           name="password"
           className="mt-4"
           placeholder="******"
@@ -72,7 +61,7 @@ export const Register = () => {
         >Password</Input>
 
         <Input
-          error={ Errors.get('password_confirmation') }
+          error={ user.Errors.get('password_confirmation') }
           name="password_confirmation"
           className="mt-4"
           placeholder="******"

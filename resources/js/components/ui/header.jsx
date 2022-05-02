@@ -3,7 +3,7 @@ import { StoreContext } from 'store'
 import { Button } from 'components/actions/button'
 
 export const Header = ({}) => {
-  const { auth } = useContext(StoreContext)
+  const { user } = useContext(StoreContext)
 
   return (
     <header className="bg-gray-800">
@@ -19,11 +19,11 @@ export const Header = ({}) => {
             className="flex items-center gap-2"
             to={{ pathname: '/profile' }}
           >
-            {auth.state.currentUser.username}
+            {user.state.currentUser.username}
 
             <img
               className="rounded-full h-8 w-8"
-              src={ auth.state.currentUser.profile_picture }
+              src={ user.state.currentUser.profile_picture }
             />
           </Button>
         </div>

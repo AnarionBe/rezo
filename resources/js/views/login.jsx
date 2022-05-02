@@ -1,30 +1,20 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Input } from 'components/forms/input'
 import { Button } from 'components/actions/button'
 
-import { useErrors } from 'helpers/useErrors'
 import { StoreContext } from 'store'
 
 export const Login = () => {
-  const navigate = useNavigate()
-
-  const { auth } = useContext(StoreContext)
+  const { user } = useContext(StoreContext)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const Errors = useErrors()
-
   const handleSubmit = async e => {
-    try {
-      e.preventDefault()
-      await auth.login({ email, password })
-      navigate('/')
-    } catch(e) {
-      Errors.set(e)
-    }
+    e.preventDefault()
+    user.login({ email, password })
   }
 
   return (
@@ -37,7 +27,7 @@ export const Login = () => {
 
         <Input
           className="mt-6"
-          error={ Errors.get('auth') }
+          error={ user.Errors.get('auth') }
           name="email"
           placeholder="eg. elon@spacex.com"
           required
@@ -48,7 +38,7 @@ export const Login = () => {
 
         <Input
           className="mt-4"
-          error={ Errors.get('auth') }
+          error={ user.Errors.get('auth') }
           name="password"
           placeholder="******"
           required

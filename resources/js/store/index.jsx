@@ -1,9 +1,9 @@
 import React, { createContext, useEffect } from 'react'
-import { useRoutes } from 'react-router-dom'
+import { useRoutes, useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 import { GuardedRoute } from 'components/guarded-route'
 
-import { useAuth } from 'store/auth'
+import { useUser } from 'store/user'
 import { usePosts } from 'store/posts'
 
 import routes from '@/js/routes'
@@ -14,17 +14,19 @@ const StoreProvider = () => {
   const axios = Axios.create({ baseURL: '/api/v1' })
 
   const router = useRoutes(routes)
-  const auth = useAuth({ axios })
-  const posts = usePosts({ axios })
+  const navigate = useNavigate()
+  const user = useUser({ axios, navigate })
+  const posts = usePosts({ axios, navigate })
 
   return (
     <StoreContext.Provider
       value={{
-        auth,
-        posts
+        user,
+        posts,
+        navigate,
       }}
     >
-      <GuardedRoute authStore={ auth }>
+      <GuardedRoute userStore={ user }>
       { router }
       </GuardedRoute>
     </StoreContext.Provider>
