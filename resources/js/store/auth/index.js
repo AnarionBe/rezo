@@ -3,38 +3,50 @@ import { useDebugState as useState } from 'use-named-state'
 
 export const useAuth = ({ axios }) => {
   const [currentUser, setCurrentUser] = useState('currentUser', {})
+  const [isAuthenticated, setIsAuthenticated] = useState('isAuthenticated', false)
 
   useEffect(() => {
     checkAuth()
   }, [])
 
-  useEffect(() => {
-    if(currentUser !== {}) {
-      window.sessionStorage.setItem('currentUser', JSON.stringify(currentUser))
-    }
-  }, [currentUser])
-
   const checkAuth = async () => {
     try {
       const { data } = await axios.get('/ping')
       setCurrentUser(data)
+      setIsAuthenticated(true)
       return true
     } catch(e) {
       console.error('Auth error:', e)
+      setIsAuthenticated(false)
       return false
     }
   }
 
   const login = async ({ email, password }) => {
-    const { data } = await axios.post('/login', { email, password })
-    setCurrentUser(data)
-    return
+    try {
+      const { data } = await axios.post('/login', { email, password })
+      setCurrentUser(data)
+      setIsAuthenticated(true)
+      return data
+    } catch(e) {
+      console.error('Auth error:', e)
+      setIsAuthenticated(false)
+      return false
+    }
   }
 
   const register = async ({ email, password, passwordConfirm, username }) => {
-    const { data } = await axios.post('/register', { email, password, password_confirmation: passwordConfirm, username })
-    setCurrentUser(data)
-    return
+    try {
+      const { data } = await axios.post('/register', { email, password, password_confirmation: passwordConfirm, username })
+      setCurrentUser(data)
+      setIsAuthenticated(true)
+      return data
+
+    } catch(e) {
+      console.error('Auth error:', e)
+      setIsAuthenticated(false)
+      return false
+    }
   }
 
   const linkWallet = async wallet => {
@@ -49,7 +61,8 @@ export const useAuth = ({ axios }) => {
 
   return {
     state: {
-      currentUser
+      currentUser,
+      isAuthenticated
     },
     checkAuth,
     login,

@@ -14,7 +14,7 @@ export const GuardedRoute = ({ children, authStore }) => {
   }
 
   useEffect(() => {
-    if(auth && !authStore.state.currentUser) {
+    if(auth && !authStore.state.isAuthenticated) {
       checkAuth()
     } else {
       setStatus(true)
@@ -25,7 +25,5 @@ export const GuardedRoute = ({ children, authStore }) => {
     return children
   }
 
-  if(status === false) {
-    navigate('/register')
-  }
+  navigate('/register')
 }
