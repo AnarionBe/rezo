@@ -16,6 +16,13 @@ export default class Posts extends BaseSchema {
         .inTable('users')
         .onDelete('SET NULL')
 
+      table.integer('post_id')
+        .nullable()
+        .unsigned()
+        .references('id')
+        .inTable('posts')
+        .onDelete('CASCADE')
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

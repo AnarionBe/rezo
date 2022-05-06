@@ -14,7 +14,7 @@ export default class AuthController {
         return response.unprocessableEntity(e.messages)
       }
 
-      return response.internalServerError()
+      return response.internalServerError(e)
     }
   }
 

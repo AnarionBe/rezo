@@ -3,10 +3,14 @@ import {
   column,
   BaseModel,
   belongsTo,
-  type BelongsTo
+  type BelongsTo,
+  hasMany,
+  type HasMany,
+  computed
 } from '@ioc:Adonis/Lucid/Orm'
 
 import User from 'App/Models/User'
+import Post from 'App/Models/Post'
 
 export default class post extends BaseModel {
   @column({ isPrimary: true })
@@ -21,10 +25,22 @@ export default class post extends BaseModel {
   @column()
   public userId: number
 
+  @column()
+  public postId?: number
+
+  @computed()
+  public get commentsCount(): number {
+    return this.$extras.comments_count
+  }
+
   @belongsTo(() => User)
   public author: BelongsTo<typeof User>
 
-  // Comments
+  @belongsTo(() => Post)
+  public parentPost: BelongsTo<typeof Post>
+
+  @hasMany(() => Post)
+  public comments: HasMany<typeof Post>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
