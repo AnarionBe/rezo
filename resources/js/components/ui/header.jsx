@@ -14,18 +14,30 @@ export const Header = ({}) => {
         >Rezo</Button>
 
         <div>
-          <Button
-            appearance="link"
-            className="flex items-center gap-2"
-            to={{ pathname: '/profile' }}
-          >
-            {user.state.currentUser.username}
+          { user.state.isAuthenticated && (
+            <Button
+              appearance="link"
+              className="flex items-center gap-2"
+              to={{ pathname: '/profile' }}
+            >
+              {user.state.currentUser.username}
 
-            <img
-              className="rounded-full h-8 w-8"
-              src={ user.state.currentUser.profile_picture }
-            />
-          </Button>
+              <img
+                className="rounded-full h-8 w-8"
+                src={ user.state.currentUser.profile_picture }
+              />
+            </Button>
+          )}
+
+          { !user.state.isAuthenticated && (
+            <Button
+              appearance="link"
+              className="flex items-center gap-2"
+              to={{ pathname: '/login' }}
+            >
+              Login
+            </Button>
+          )}
         </div>
       </div>
     </header>

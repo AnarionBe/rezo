@@ -1,9 +1,9 @@
-import { useDebugState } from "use-named-state"
+import { useState } from 'react'
 import { basil } from '@spices/basil'
 
 export const useErrors = () => {
-  const [errors, setErrors] = useDebugState('errors', [])
-  const [status, setStatus] = useDebugState('status', null)
+  const [errors, setErrors] = useState([])
+  const [status, setStatus] = useState(null)
 
   const set = e => {
     setErrors(basil.get(e, 'response.data.errors', []))

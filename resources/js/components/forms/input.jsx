@@ -1,5 +1,4 @@
-import React from 'react'
-import { useDebugState as useState } from 'use-named-state'
+import React, { useState } from 'react'
 import { basil } from '@spices/basil'
 import classNames from 'classnames'
 import { Button } from 'components/actions/button'
@@ -15,7 +14,7 @@ export const Input = ({
   type = 'text',
   value,
 }) => {
-  const [showField, setShowField] = useState('showField', false)
+  const [showField, setShowField] = useState(false)
 
   const handleInput = e => {
     setValue(e.target.value)

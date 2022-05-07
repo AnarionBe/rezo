@@ -1,63 +1,88 @@
-import { useDebugState as useState } from 'use-named-state'
+import { useEffect, useReducer, useState } from 'react'
 import { useErrors } from 'helpers/use-errors'
+import actions from './actions'
+import reducer from './reducer'
+import initialState from './defaults'
 
 export const usePosts = ({ axios }) => {
-  const [posts, setPosts] = useState('posts', [])
-  const [isCreating, setIsCreating] = useState('isCreating', false)
-  const [isFetchingList, setIsFetchingList] = useState('isFetchingList', false)
-  const [isDeleting, setIsDeleting] = useState('isDeleting', false)
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    get()
+  }, [])
 
   const Errors = useErrors()
 
-  const create = async ({ content }) => {
+  const create = async ({ preserveForm }) => {
+    const path = state.form.parentId ? `/posts/${ state.form.parentId }/comment` : '/posts'
+    const type = state.form.parentId ? actions.ADD_COMMENT : actions.ADD_ONE
+
     try {
-      setIsCreating(true)
-      const { data } = await axios.post('/posts', { content })
-      setPosts([data, ...posts])
-      return data
+      setIsLoading(true)
+      const { data } = await axios.post(path, state.form)
+
+      dispatch({ type, payload: { post: data, preserveForm } })
     } catch(e) {
       Errors.set(e)
     } finally {
-      setIsCreating(false)
+      setIsLoading(false)
     }
   }
 
   const get = async () => {
     try {
-      setIsFetchingList(true)
+      setIsLoading(true)
       const { data } = await axios.get('/posts')
-      setPosts(data)
-      return data
+      dispatch({ type: actions.SET_LIST, payload: { posts: data } })
     } catch(e) {
       Errors.set(e)
     } finally {
-      setIsFetchingList(false)
+      setIsLoading(false)
     }
   }
 
   const deletePost = async id => {
     try {
-      setIsDeleting(true)
+      setIsLoading(true)
       const { data } = await axios.delete(`/posts/${id}`)
-      setPosts(posts.filter(post => post.id !== id))
-      return data
+      dispatch({ type: actions.REMOVE_ONE, payload: { post: data } })
     } catch(e) {
       Errors.set(e)
     } finally {
-      setIsDeleting(false)
+      setIsLoading(false)
     }
+  }
+
+  const view = async id => {
+    try {
+      setIsLoading(true)
+      const { data } = await axios.get(`/posts/${id}`)
+      dispatch({ type: actions.SET_POST, payload: { post: data } })
+    } catch(e) {
+      dispatch({ type: actions.SET_POST, payload: { post: null } })
+      Errors.set(e)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const setForm = (field, value) => {
+    dispatch({ type: actions.SET_FORM, payload: { field, value } })
   }
 
   return {
     state: {
-      posts,
-      isCreating,
-      isFetchingList,
-      isDeleting
+      ...state,
+      isLoading
+    },
+    api: {
+      create,
+      get,
+      deletePost,
+      view
     },
     Errors,
-    create,
-    get,
-    deletePost
+    setForm
   }
 }

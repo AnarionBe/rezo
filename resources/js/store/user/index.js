@@ -9,8 +9,8 @@ const initialState = {
 }
 
 export const useUser = ({ axios, navigate }) => {
-  const [isLoading, setIsLoading] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [isLoading, setIsLoading] = useState(false)
   const Errors = useErrors()
 
   useEffect(() => {

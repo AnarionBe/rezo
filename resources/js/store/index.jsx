@@ -1,5 +1,8 @@
 import React, { createContext, useEffect } from 'react'
-import { useRoutes, useNavigate } from 'react-router-dom'
+import {
+  useRoutes,
+  useNavigate,
+} from 'react-router-dom'
 import Axios from 'axios'
 import { GuardedRoute } from 'components/guarded-route'
 
@@ -15,6 +18,7 @@ const StoreProvider = () => {
 
   const router = useRoutes(routes)
   const navigate = useNavigate()
+
   const user = useUser({ axios, navigate })
   const posts = usePosts({ axios, navigate })
 
@@ -23,7 +27,9 @@ const StoreProvider = () => {
       value={{
         user,
         posts,
-        navigate,
+        router: {
+          navigate,
+        },
       }}
     >
       <GuardedRoute userStore={ user }>

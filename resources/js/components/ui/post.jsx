@@ -1,15 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import classNames from 'classnames'
 import { Button } from 'components/actions/button'
+import { Input } from 'components/forms/input'
 import { Menu } from 'components/ui/menu'
-import { useDebugState as useState } from 'use-named-state'
 import { StoreContext } from 'store'
 
 export const Post = ({
   data,
   className,
+  onClick
 }) => {
-  const [showMenu, setShowMenu] = useState('showMenu', false)
+  const [showMenu, setShowMenu] = useState(false)
   const { posts, user } = useContext(StoreContext)
 
   const options = [
@@ -18,7 +19,7 @@ export const Post = ({
       action: async e => {
         e.preventDefault()
 
-        posts.deletePost(data?.id)
+        posts.api.deletePost(data?.id)
       },
       appearance: 'subtle',
       size: 'xs',
@@ -30,13 +31,32 @@ export const Post = ({
 
   const handleClick = e => {
     e.preventDefault()
+    e.stopPropagation()
 
     setShowMenu(!showMenu)
   }
 
+  const handleFormChange = (field, value) => {
+    posts.setForm(field, value)
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    await posts.api.create({})
+  }
+
   return (
-    <div className={ classNames(className, 'bg-gray-800 p-4 rounded-lg') }>
-      <div className="flex justify-between">
+    <article
+      onClick={ onClick }
+      className={ classNames(
+        className,
+        { 'cursor-pointer': onClick },
+        'bg-gray-800 p-4 rounded-lg'
+      )}
+    >
+      <header className="flex justify-between">
         <div className="flex items-center gap-2">
           <img
             className="rounded-full h-8 w-8"
@@ -62,9 +82,42 @@ export const Post = ({
             }
           </div>
         )}
+      </header>
+
+      <main className="mt-4">{ data.content }</main>
+
+      <div className="flex mt-4 text-sm gap-2">
+        <div>
+          <span>Comments:</span>
+          <span>{ data.commentsCount }</span>
+        </div>
+
+        <div>
+          <Button
+            appearance="subtle"
+            size="s"
+          >Answer</Button>
+        </div>
       </div>
 
-      <div className="mt-4">{ data.content }</div>
-    </div>
+      <form
+        className="mt-4 flex gap-4"
+        onSubmit={ handleSubmit }
+        onFocus={ () => handleFormChange('parentId', data.id) }
+      >
+        <Input
+          className="flex-1"
+          error={ posts.Errors.get('content') }
+          name="content"
+          placeholder="Write you answer"
+          setValue={ val => handleFormChange('content', val) }
+        />
+
+        <Button
+          action={ handleSubmit }
+          disabled={ posts.state.isCreating }
+        >Submit anwser</Button>
+      </form>
+    </article>
   )
 }

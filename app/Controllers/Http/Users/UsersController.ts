@@ -40,7 +40,6 @@ export default class UsersController {
 
       return await user.merge({ wallet }).save()
     } catch(e) {
-      console.log(e)
       return response.internalServerError(e)
     }
   }

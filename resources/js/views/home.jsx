@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { useDebugState as useState } from 'use-named-state'
+import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from 'store'
 import { Input } from 'components/forms/input'
 import { Button } from 'components/actions/button'
@@ -7,18 +6,22 @@ import { Post } from 'components/ui/post'
 import { Header } from 'components/ui/header'
 
 export const Home = () => {
-  const { posts } = useContext(StoreContext)
-
-  const [content, setContent] = useState('form', '')
+  const { posts, router } = useContext(StoreContext)
+  const [content, setContent] = useState('')
 
   useEffect(() => {
-    posts.get()
+    posts.api.get()
   }, [])
 
   const handleSubmit = async e => {
     e.preventDefault()
-    await posts.create({ content })
+    await posts.api.create({ content })
     setContent('')
+  }
+
+  const handleOpenPost = (e, id) => {
+    e.preventDefault()
+    router.navigate(`/post/${id}`)
   }
 
   return (
@@ -46,10 +49,11 @@ export const Home = () => {
         </form>
 
         <section className="flex flex-col gap-4 p-4 rounded-lg">
-          { posts.state.posts.map((e, i) => (
+          { posts.state.posts.map(p => (
             <Post
-              key={ e.id }
-              data={ e }
+              key={ p.id }
+              data={ p }
+              onClick={ e => handleOpenPost(e, p.id) }
               posts={ posts }
             />
           )) }

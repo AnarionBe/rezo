@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { useDebugState as useState } from 'use-named-state'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Input } from 'components/forms/input'
@@ -10,10 +9,10 @@ import { StoreContext } from 'store'
 export const Register = () => {
   const { user } = useContext(StoreContext)
 
-  const [email, setEmail] = useState('email', '')
-  const [password, setPassword] = useState('password', '')
-  const [passwordConfirm, setPasswordConfirm] = useState('passwordConfirm', '')
-  const [username, setUsername] = useState('username', '')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [username, setUsername] = useState('')
 
   const handleSubmit = async e => {
     e.preventDefault()

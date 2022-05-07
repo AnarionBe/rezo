@@ -4,11 +4,12 @@ import { Home } from 'views/home'
 import { Register } from 'views/register'
 import { Login } from 'views/login'
 import { Profile } from 'views/profile'
+import { Post } from 'views/post'
 
 export default [
   {
     path: '/',
-    element: <Home auth name="home" />,
+    element: <Home name="home" />,
   },
   {
     path: '/register',
@@ -21,5 +22,9 @@ export default [
   {
     path: '/profile',
     element: <Profile auth name="profile" />,
+  },
+  {
+    path: '/post/:id',
+    element: <Post name="post" />,
   }
 ]

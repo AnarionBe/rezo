@@ -11,7 +11,6 @@ export default class PostsController {
       const user = await auth.authenticate()
       const parentPost = id ? await Post.findOrFail(id) : null
 
-      console.log(parentPost)
       const post = await Post.create(data)
 
       await post.related('author').associate(user)
