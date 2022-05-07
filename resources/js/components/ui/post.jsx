@@ -47,6 +47,29 @@ export const Post = ({
     await posts.api.create({})
   }
 
+  const renderForm = () => {
+    return (
+      <form
+        className="mt-4 flex gap-4"
+        onSubmit={ handleSubmit }
+        onFocus={ () => handleFormChange('parentId', data.id) }
+      >
+        <Input
+          className="flex-1"
+          error={ posts.Errors.get('content') }
+          name="content"
+          placeholder="Write you answer"
+          setValue={ val => handleFormChange('content', val) }
+        />
+
+        <Button
+          action={ handleSubmit }
+          disabled={ posts.state.isCreating }
+        >Submit anwser</Button>
+      </form>
+    )
+  }
+
   return (
     <article
       onClick={ onClick }
@@ -87,37 +110,22 @@ export const Post = ({
       <main className="mt-4">{ data.content }</main>
 
       <div className="flex mt-4 text-sm gap-2">
-        <div>
-          <span>Comments:</span>
-          <span>{ data.commentsCount }</span>
-        </div>
+        { !data.post_id && <>
+          <div>
+            <span>Comments:</span>
+            <span>{ data.commentsCount }</span>
+          </div>
 
-        <div>
-          <Button
-            appearance="subtle"
-            size="s"
-          >Answer</Button>
-        </div>
+          <div>
+            <Button
+              appearance="subtle"
+              size="s"
+            >Answer</Button>
+          </div>
+        </>}
       </div>
 
-      <form
-        className="mt-4 flex gap-4"
-        onSubmit={ handleSubmit }
-        onFocus={ () => handleFormChange('parentId', data.id) }
-      >
-        <Input
-          className="flex-1"
-          error={ posts.Errors.get('content') }
-          name="content"
-          placeholder="Write you answer"
-          setValue={ val => handleFormChange('content', val) }
-        />
-
-        <Button
-          action={ handleSubmit }
-          disabled={ posts.state.isCreating }
-        >Submit anwser</Button>
-      </form>
+      { !data.post_id && renderForm() }
     </article>
   )
 }

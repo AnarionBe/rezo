@@ -11,6 +11,15 @@ export default class PostsController {
       const user = await auth.authenticate()
       const parentPost = id ? await Post.findOrFail(id) : null
 
+      if(parentPost.postId != null) {
+        return response.badRequest({
+          errors: [{
+            field: 'id',
+            message: 'Targetted post is already a comment'
+          }]
+        })
+      }
+
       const post = await Post.create(data)
 
       await post.related('author').associate(user)
