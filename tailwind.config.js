@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: [
     plugin(function({ addVariant }) {
-      addVariant('err', '.-is-errored')
+      addVariant('err', '.-is-errored, .-is-errored *')
     })
   ],
 }

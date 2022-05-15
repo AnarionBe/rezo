@@ -1,0 +1,52 @@
+.view-profile {
+  $root: '.view-profile';
+
+  @apply container;
+  @apply mx-auto px-4 mt-8;
+  @apply flex flex-col gap-8;
+
+  @apply sm:flex-row;
+
+  #{$root}__aside {
+    @apply w-full;
+    @apply bg-gray-800;
+    @apply p-4;
+    @apply rounded-lg;
+
+    @apply sm:w-1/3 lg:w-1/4;
+  }
+
+  #{$root}__user-info {
+    @apply flex flex-col items-center;
+  }
+
+  #{$root}__avatar {
+    @apply overflow-hidden;
+    @apply relative;
+    @apply border-2 border-gray-700 rounded-full;
+    @apply w-32 h-32;
+  }
+
+  #{$root}__avatar-overlay {
+    @apply absolute;
+    @apply opacity-0;
+    @apply bg-gray-700 bg-opacity-80;
+    @apply flex justify-center items-center;
+    @apply top-0 left-0;
+    @apply w-full h-full;
+
+    @apply hover:opacity-100;
+  }
+
+  #{$root}__username {
+    @apply text-2xl;
+    @apply mt-4;
+  }
+
+  #{$root}__body {
+    @apply flex-1;
+    @apply bg-gray-800;
+    @apply p-4;
+    @apply rounded-lg;
+  }
+}

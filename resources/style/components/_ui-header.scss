@@ -1,0 +1,11 @@
+.ui-header {
+  $root: '.ui-header';
+
+  @apply bg-gray-800;
+
+  #{$root}__container {
+    @apply container;
+    @apply mx-auto p-4;
+    @apply flex justify-between items-center;
+  }
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
-import '../css/app.scss'
+import '../style/app.scss'
 import 'babel-polyfill'
 
 import { StoreProvider } from './store'

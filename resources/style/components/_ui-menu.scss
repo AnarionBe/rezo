@@ -1,0 +1,13 @@
+.ui-menu {
+  $root: '.ui-menu';
+
+  @apply bg-gray-800;
+  @apply p-2;
+  @apply border-2 border-gray-700 rounded-lg;
+
+  #{$root}__option {
+    & + #{$root}__option {
+      @apply mt-2;
+    }
+  }
+}

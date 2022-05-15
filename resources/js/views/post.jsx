@@ -37,7 +37,7 @@ export const Post = ({}) => {
     <>
       <Header />
 
-      <div className="container mx-auto px-4 mt-8">
+      <div className="view-post">
         <PostDetails data={ posts.state.post } />
 
         { renderComments() }

@@ -1,0 +1,50 @@
+.forms-input {
+  $root: '.forms-input';
+
+  #{$root}__label {
+    @apply inline-block;
+    @apply mb-1;
+
+    &.-is-required:after {
+      @apply content-['*'];
+      @apply ml-1;
+      @apply text-red-600;
+    }
+  }
+
+  #{$root}__field-container {
+    @apply relative;
+
+    .actions-button {
+      @apply absolute;
+      @apply top-0 right-0 bottom-0;
+      @apply m-2;
+      @apply border-0;
+    }
+  }
+
+  #{$root}__field {
+    @apply bg-gray-900;
+    @apply border-2 border-gray-700 rounded-lg;
+    @apply w-full;
+    @apply p-2;
+
+    &.-has-action {
+      @apply pr-10;
+    }
+
+    &:hover,
+    &:focus {
+      @apply border-gray-300;
+    }
+
+    &.-is-errored {
+      @apply border-red-600;
+    }
+  }
+
+  #{$root}__error {
+    @apply text-red-600;
+  }
+
+}

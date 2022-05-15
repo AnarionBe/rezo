@@ -28,9 +28,9 @@ export const Home = () => {
     <>
       <Header />
 
-      <div className="container mx-auto mt-8">
+      <div className="view-home">
         <form
-          className="flex mb-8 gap-4 px-4"
+          className="view-home__form"
           onSubmit={ e => handleSubmit(e) }
         >
           <Input
@@ -48,7 +48,7 @@ export const Home = () => {
           >Create post</Button>
         </form>
 
-        <section className="flex flex-col gap-4 p-4 rounded-lg">
+        <section className="view-home__posts">
           { posts.state.posts.map(p => (
             <Post
               key={ p.id }

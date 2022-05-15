@@ -1,0 +1,38 @@
+.view-register {
+  $root: '.view-register';
+
+  @apply flex justify-center items-center;
+  @apply h-full;
+
+  #{$root}__form {
+    @apply bg-gray-800;
+    @apply py-8 px-4 mx-4;
+    @apply rounded-xl;
+
+    & > .forms-input {
+      & + .forms-input {
+        @apply mt-4;
+      }
+    }
+
+    & > .actions-button {
+      @apply mt-6;
+      @apply w-full;
+    }
+  }
+
+  #{$root}__title {
+    @apply text-3xl;
+    @apply mb-6;
+  }
+
+  #{$root}__login {
+    @apply inline-block;
+    @apply mt-2;
+  }
+
+  #{$root}__login-link {
+    @apply underline;
+    @apply text-blue-500;
+  }
+}

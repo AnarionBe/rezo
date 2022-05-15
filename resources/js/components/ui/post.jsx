@@ -3,11 +3,11 @@ import classNames from 'classnames'
 import { Button } from 'components/actions/button'
 import { Input } from 'components/forms/input'
 import { Menu } from 'components/ui/menu'
+import { UserPresentation } from 'components/ui/user-presentation'
 import { StoreContext } from 'store'
 
 export const Post = ({
   data,
-  className,
   onClick
 }) => {
   const [showMenu, setShowMenu] = useState(false)
@@ -73,23 +73,15 @@ export const Post = ({
   return (
     <article
       onClick={ onClick }
-      className={ classNames(
-        className,
-        { 'cursor-pointer': onClick },
-        'bg-gray-800 p-4 rounded-lg'
-      )}
+      className={classNames('ui-post', {
+        'cursor-pointer': onClick
+      })}
     >
-      <header className="flex justify-between">
-        <div className="flex items-center gap-2">
-          <img
-            className="rounded-full h-8 w-8"
-            src={ data.author?.profile_picture }
-          />
-          <h4 className="text-lg font-semibold">{ data.author?.username || 'User deleted' }</h4>
-        </div>
+      <header className="ui-post__header">
+        <UserPresentation user={ data.author } />
 
         { enabledOptions.length > 0 && (
-          <div className="relative">
+          <div className="ui-post__actions">
             <Button
               action={ e => handleClick(e) }
               appearance="icon"
@@ -98,21 +90,18 @@ export const Post = ({
             />
 
             { showMenu &&
-              <Menu
-                className="absolute right-0"
-                options={ options }
-              />
+              <Menu options={ options } />
             }
           </div>
         )}
       </header>
 
-      <main className="mt-4">{ data.content }</main>
+      <main className="ui-post__content">{ data.content }</main>
 
-      <div className="flex mt-4 text-sm gap-2">
+      <div className="ui-post__footer">
         { !data.post_id && <>
           <div>
-            <span>Comments:</span>
+            <span>Comments: </span>
             <span>{ data.commentsCount }</span>
           </div>
 

@@ -5,7 +5,6 @@ import { Button } from 'components/actions/button'
 
 export const Input = ({
   children = '',
-  className = '',
   error,
   name = basil.uniqId('input-'),
   placeholder = '',
@@ -27,24 +26,22 @@ export const Input = ({
   }
 
   return (
-    <div className={ classNames('input', className) }>
+    <div className="forms-input">
       { children !== '' &&
         <label
-          className="inline-block mb-1 relative"
+          className={classNames('forms-input__label', {
+            '-is-required': required
+          })}
           htmlFor={ name }
-        >
-          { children }
-          { required &&
-            <span className="pl-1 text-red-600 text-lg">*</span>
-          }
-        </label>
+        >{ children }</label>
       }
 
-      <div className="relative">
+      <div className="forms-input__field-container">
         <input
           onInput={ e => handleInput(e) }
-          className={classNames(fieldClasses, {
-            '-is-errored': error
+          className={classNames('forms-input__field', {
+            '-is-errored': error,
+            '-has-action': type === 'password'
           })}
           id={ name }
           name={ name }
@@ -57,7 +54,6 @@ export const Input = ({
         { type === 'password' &&
           <Button
             action={ e => handleShowField(e) }
-            className="absolute right-0 top-0 bottom-0 my-2 mr-2 border-0"
             iconPre={ showField ? 'FaEye' : 'FaEyeSlash' }
             size="s"
             tabIndex="-1"
@@ -66,18 +62,8 @@ export const Input = ({
       </div>
 
       { basil.get(error, 'message') &&
-        <span className="text-red-500">{ error.message }</span>
+        <span className="forms-input__error">{ error.message }</span>
       }
     </div>
   )
 }
-
-const fieldClasses = [
-  'bg-gray-900',
-  'rounded-lg',
-  'border-2',
-  'border-gray-700',
-  'w-full',
-  'p-2',
-  'err:border-red-500',
-]

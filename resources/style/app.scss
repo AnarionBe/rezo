@@ -1,0 +1,28 @@
+@import "./tailwind.css";
+
+:root {
+  color-scheme: dark;
+
+  @apply bg-gray-900;
+  @apply text-gray-50;
+}
+
+#app {
+  @apply h-screen;
+  @apply overflow-auto;
+}
+
+// Views
+@import "./views/home";
+@import "./views/login";
+@import "./views/register";
+@import "./views/post";
+@import "./views/profile";
+
+// Components
+@import "./components/forms-input";
+@import "./components/actions-button";
+@import "./components/ui-post";
+@import "./components/ui-user-presentation";
+@import "./components/ui-menu";
+@import "./components/ui-header";

@@ -1,0 +1,18 @@
+.ui-user-presentation {
+  $root: '.ui-user-presentation';
+
+  @apply flex items-center gap-2;
+
+  &.-inverted {
+    @apply flex-row-reverse;
+  }
+
+  #{$root}__avatar {
+    @apply rounded-full;
+    @apply h-8 w-8;
+  }
+
+  #{$root}__username {
+    @apply text-lg font-semibold;
+  }
+}

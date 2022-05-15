@@ -20,15 +20,14 @@ export const Register = () => {
   }
 
   return (
-    <section className="flex justify-center items-center h-full">
+    <section className="view-register">
       <form
         onSubmit={ e => handleSubmit(e) }
-        className="bg-gray-800 p-8 mx-4 rounded-xl"
+        className="view-register__form"
       >
-        <h1 className="text-3xl">Create an account</h1>
+        <h1 className="view-register__title">Create an account</h1>
 
         <Input
-          className="mt-6"
           error={ user.Errors.get('email') }
           name="email"
           placeholder="eg. elon@spacex.com"
@@ -41,7 +40,6 @@ export const Register = () => {
         <Input
           error={ user.Errors.get('username') }
           name="username"
-          className="mt-4"
           placeholder="eg. elonmusk"
           required
           setValue={ setUsername }
@@ -51,7 +49,6 @@ export const Register = () => {
         <Input
           error={ user.Errors.get('password') }
           name="password"
-          className="mt-4"
           placeholder="******"
           required
           setValue={ setPassword }
@@ -62,7 +59,6 @@ export const Register = () => {
         <Input
           error={ user.Errors.get('password_confirmation') }
           name="password_confirmation"
-          className="mt-4"
           placeholder="******"
           required
           setValue={ setPasswordConfirm }
@@ -72,12 +68,11 @@ export const Register = () => {
 
         <Button
           action={ handleSubmit }
-          className="mt-8 w-full"
           disabled={ !password || !passwordConfirm || !email || !username }
           type="submit"
         >Register</Button>
 
-        <span className="inline-block mt-4">Already an account? <Link className="underline text-blue-500" to="/login">Sign in</Link></span>
+        <span className="view-register__login">Already an account? <Link className="view-register__login-link" to="/login">Sign in</Link></span>
       </form>
     </section>
   )

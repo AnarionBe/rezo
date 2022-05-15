@@ -1,0 +1,12 @@
+.view-post {
+  $root: '.view-post';
+
+  @apply container;
+  @apply mx-auto mt-8 px-4;
+
+  & > .ui-post {
+    & + .ui-post {
+      @apply ml-4 mt-4;
+    }
+  }
+}

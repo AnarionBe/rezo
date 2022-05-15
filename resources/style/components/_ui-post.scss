@@ -1,0 +1,31 @@
+.ui-post {
+  $root: '.ui-post';
+
+  @apply bg-gray-800;
+  @apply p-4;
+  @apply rounded-lg;
+
+  #{$root}__header {
+    @apply flex justify-between;
+  }
+
+  #{$root}__content {
+    @apply mt-4;
+  }
+
+  #{$root}__footer {
+    @apply flex gap-2;
+    @apply mt-4;
+    @apply text-sm;
+  }
+
+  #{$root}__actions {
+    @apply relative;
+
+    & > .ui-menu {
+      @apply absolute;
+      @apply right-0;
+      @apply z-10;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.view-home {
+  $root: '.view-home';
+
+  @apply container;
+  @apply mx-auto;
+  @apply mt-8;
+  @apply px-4;
+
+  #{$root}__form {
+    @apply flex;
+    @apply mb-8;
+    @apply gap-4;
+  }
+
+  #{$root}__posts {
+    @apply flex;
+    @apply flex-col;
+    @apply gap-4;
+    @apply p-4;
+    @apply rounded-lg;
+  }
+}

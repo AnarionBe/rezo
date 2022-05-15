@@ -18,15 +18,14 @@ export const Login = () => {
   }
 
   return (
-    <section className="flex justify-center items-center h-full">
+    <section className="view-login">
       <form
         onSubmit={ e => handleSubmit(e) }
-        className="bg-gray-800 p-8 mx-4 rounded-xl"
+        className="view-login__form"
       >
-        <h1 className="text-3xl">Create an account</h1>
+        <h1 className="view-login__title">Create an account</h1>
 
         <Input
-          className="mt-6"
           error={ user.Errors.get('auth') }
           name="email"
           placeholder="eg. elon@spacex.com"
@@ -37,7 +36,6 @@ export const Login = () => {
         >Email</Input>
 
         <Input
-          className="mt-4"
           error={ user.Errors.get('auth') }
           name="password"
           placeholder="******"
@@ -54,7 +52,7 @@ export const Login = () => {
           type="submit"
         >Login</Button>
 
-        <span className="inline-block mt-2">Need an account? <Link className="underline text-blue-500" to="/register">Register</Link></span>
+        <span className="view-login__register">Need an account? <Link className="view-login__register-link" to="/register">Register</Link></span>
       </form>
     </section>
   )

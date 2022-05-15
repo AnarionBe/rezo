@@ -13,7 +13,7 @@ export const Menu = ({
       <Button
         action={ e => opt.action(e) }
         appearance={ opt.appearance }
-        className={ idx !== 0 && 'mt-2' }
+        className="ui-menu__option"
         key={ idx }
         size={ opt.size }
       >{ opt.label }</Button>
@@ -21,17 +21,8 @@ export const Menu = ({
   }
 
   return (
-    <div className={ classNames(classes, className) }>
+    <div className="ui-menu">
       { enabledOptions.map(renderOption) }
     </div>
   )
 }
-
-const classes = [
-  'bg-gray-800',
-  'p-2',
-  'border-2',
-  'border-gray-700',
-  'rounded-lg',
-  'z-10',
-]
