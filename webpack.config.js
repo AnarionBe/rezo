@@ -1,6 +1,7 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const dotenv = require('dotenv')
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,14 @@ Encore.enableReactPreset() // enable react support
       .addPlugin(new NodePolyfillPlugin({
         excludeAliases: ["console"]
       }))
+      .configureDefinePlugin(options => {
+        const env = dotenv.config()
+
+        if(env.error) throw env.error
+
+        options['process.env'].MORALIS_APP_ID = JSON.stringify(env.parsed.MORALIS_APP_ID)
+        options['process.env'].MORALIS_SERVER_URL = JSON.stringify(env.parsed.MORALIS_SERVER_URL)
+      })
 
 /*
 |--------------------------------------------------------------------------

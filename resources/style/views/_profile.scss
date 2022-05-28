@@ -8,7 +8,7 @@
   @apply sm:flex-row;
 
   #{$root}__aside {
-    @apply w-full;
+    @apply w-full h-fit;
     @apply bg-gray-800;
     @apply p-4;
     @apply rounded-lg;
@@ -45,6 +45,7 @@
 
   #{$root}__body {
     @apply flex-1;
+    @apply flex flex-col gap-4;
     @apply bg-gray-800;
     @apply p-4;
     @apply rounded-lg;

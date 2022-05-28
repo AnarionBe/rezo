@@ -1,0 +1,39 @@
+.ui-nft {
+  $root: '.ui-nft';
+
+  @apply p-4;
+  @apply border border-gray-500 rounded-lg;
+
+  @apply flex flex-col gap-4;
+
+  @apply md:flex-row;
+
+  #{$root}__figure {
+    @apply w-full;
+    @apply rounded-lg;
+
+    @apply md:w-1/2;
+
+    & > video,
+    & > img {
+      @apply w-full h-full;
+      @apply rounded-lg;
+      @apply object-contain;
+    }
+  }
+
+  #{$root}__data {
+    @apply w-full;
+
+    @apply md:w-1/2;
+
+    .title {
+      @apply text-2xl font-bold;
+    }
+  }
+
+  #{$root}__cta {
+    @apply mt-4;
+    @apply w-full;
+  }
+}

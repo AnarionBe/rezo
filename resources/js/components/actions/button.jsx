@@ -7,6 +7,7 @@ export const Button =  ({
   action = e => e.preventDefault(),
   appearance = 'button',
   children,
+  klass = '',
   disabled = false,
   iconPre,
   iconPost,
@@ -32,7 +33,7 @@ export const Button =  ({
     return (
       <button
         onClick={ e => action(e) }
-        className={ classNames('actions-button', classes) }
+        className={ classNames('actions-button', classes, klass) }
         disabled={ disabled }
         tabIndex={ tabIndex }
         type={ type }
@@ -44,7 +45,7 @@ export const Button =  ({
     return (
       <Link
         to={ to }
-        className={ classNames('actions-button', classes) }
+        className={ classNames('actions-button', classes, klass) }
         disabled={ disabled }
         tabIndex={ tabIndex }
         type={ type }

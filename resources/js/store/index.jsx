@@ -4,10 +4,10 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import Axios from 'axios'
-import { GuardedRoute } from 'components/guarded-route'
 
 import { useUser } from 'store/user'
 import { usePosts } from 'store/posts'
+import { useMoralis } from 'store/moralis'
 
 import routes from '@/js/routes'
 
@@ -21,21 +21,19 @@ const StoreProvider = () => {
 
   const user = useUser({ axios, navigate })
   const posts = usePosts({ axios, navigate })
+  const moralis = useMoralis()
 
   return (
     <StoreContext.Provider
       value={{
         user,
         posts,
+        moralis,
         router: {
           navigate,
         },
       }}
-    >
-      <GuardedRoute userStore={ user }>
-      { router }
-      </GuardedRoute>
-    </StoreContext.Provider>
+    >{ router }</StoreContext.Provider>
   );
 }
 

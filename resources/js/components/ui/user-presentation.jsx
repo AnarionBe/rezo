@@ -11,15 +11,15 @@ export const UserPresentation = ({
         '-inverted': inverted,
       })}
     >
-      { user.profile_picture && (
+      { user.avatar && (
           <img
           className="ui-user-presentation__avatar"
-          src={ user.profile_picture }
+          src={ user.avatar }
           alt={ `${ user.username }'s avatar` }
         />
       )}
 
-      <h4 className="ui-user-presentation__username">{ user.username || 'Anonymous user' }</h4>
+      <h4 className="ui-user-presentation__username">{ user.username || `${ user.wallet.slice(0, 10) }...${ user.wallet.slice(user.wallet.length - 4) }` }</h4>
     </div>
   )
 }

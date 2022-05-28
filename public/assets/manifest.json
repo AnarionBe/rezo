@@ -1,4 +1,22 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
-  "assets/app.js": "http://localhost:8080/assets/app.js"
+  "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/_a118-_679f-_9285-_c6c0.js": "http://localhost:8080/assets/_a118-_679f-_9285-_c6c0.js",
+  "assets/_6c05-_0b24-_7e2d-_1ce7-_866b.js": "http://localhost:8080/assets/_6c05-_0b24-_7e2d-_1ce7-_866b.js",
+  "assets/node_modules_web3auth_metamask-adapter_dist_metamaskAdapter_esm_js.js": "http://localhost:8080/assets/node_modules_web3auth_metamask-adapter_dist_metamaskAdapter_esm_js.js",
+  "assets/node_modules_web3auth_phantom-adapter_dist_phantomAdapter_esm_js.js": "http://localhost:8080/assets/node_modules_web3auth_phantom-adapter_dist_phantomAdapter_esm_js.js",
+  "assets/_da9b-_96ce-_a993-_7e2d-_2b6a.js": "http://localhost:8080/assets/_da9b-_96ce-_a993-_7e2d-_2b6a.js",
+  "assets/_7e2d.js": "http://localhost:8080/assets/_7e2d.js",
+  "assets/_6c05-_0b24-_1ce7-_866b.js": "http://localhost:8080/assets/_6c05-_0b24-_1ce7-_866b.js",
+  "assets/_da9b-_96ce-_a993-_2b6a.js": "http://localhost:8080/assets/_da9b-_96ce-_a993-_2b6a.js",
+  "assets/node_modules_toruslabs_openlogin-ed25519_dist_openloginEd25519_esm_js.js": "http://localhost:8080/assets/node_modules_toruslabs_openlogin-ed25519_dist_openloginEd25519_esm_js.js",
+  "assets/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_babel_runtime_helpers_es-58772e.js": "http://localhost:8080/assets/vendors-node_modules_babel_runtime_regenerator_index_js-node_modules_babel_runtime_helpers_es-58772e.js",
+  "assets/vendors-node_modules_web3auth_base-provider_dist_baseProvider_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_base-provider_dist_baseProvider_esm_js.js",
+  "assets/vendors-node_modules_toruslabs_tweetnacl-js_nacl-fast_js.js": "http://localhost:8080/assets/vendors-node_modules_toruslabs_tweetnacl-js_nacl-fast_js.js",
+  "assets/vendors-node_modules_web3auth_solana-provider_dist_solanaProvider_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_solana-provider_dist_solanaProvider_esm_js.js",
+  "assets/vendors-node_modules_web3auth_ethereum-provider_dist_ethereumProvider_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_ethereum-provider_dist_ethereumProvider_esm_js.js",
+  "assets/vendors-node_modules_web3auth_torus-evm-adapter_dist_torusEvmAdapter_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_torus-evm-adapter_dist_torusEvmAdapter_esm_js.js",
+  "assets/vendors-node_modules_web3auth_torus-solana-adapter_dist_torusSolanaAdapter_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_torus-solana-adapter_dist_torusSolanaAdapter_esm_js.js",
+  "assets/vendors-node_modules_web3auth_wallet-connect-v1-adapter_dist_walletConnectV1Adapter_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_wallet-connect-v1-adapter_dist_walletConnectV1Adapter_esm_js.js",
+  "assets/vendors-node_modules_web3auth_openlogin-adapter_dist_openloginAdapter_esm_js.js": "http://localhost:8080/assets/vendors-node_modules_web3auth_openlogin-adapter_dist_openloginAdapter_esm_js.js"
 }
